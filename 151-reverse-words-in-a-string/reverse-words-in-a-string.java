@@ -1,12 +1,14 @@
-// logic=> trim the string so that the spaces at starting and ending gets cut,convert the new string into array of a string to iterate over the alphabet and make one string builder to store the reverse string,always start from back when we want reversed string add all the words and spaces from ans array to string builder
 class Solution {
     public String reverseWords(String s) {
-        String[] ans = s.split(" +");
-        StringBuilder sb =new StringBuilder();
-        for(int i=ans.length-1;i>=0;i--){
-            sb.append(ans[i]);            
-            sb.append(" ");            
+// remove leading or trailing spaces use trim()
+//trimmed string is then split into an array of words by split(" +");
+//" +" is use for one or more spaces
+        String[] trimmed_one = s.trim().split(" +"); 
+        String ans  ="";
+        for(int i=trimmed_one.length-1;i>0;i--){
+//letters is added and  spaces between two words            
+            ans += trimmed_one[i] + " "; 
         }
-        return sb.toString().trim();
+        return ans + trimmed_one[0];
     }
 }
