@@ -1,3 +1,4 @@
+
 class Solution {
     public int pivotInteger(int n) {
         int start=1,end=n;
