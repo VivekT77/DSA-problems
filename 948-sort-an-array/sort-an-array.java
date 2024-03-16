@@ -1,24 +1,20 @@
 //using MERGE SORT
 class Solution {
-    public int[] sortArray(int[] nums) {
-        divide(nums,0,nums.length-1);
-        return nums;
-    }
-    public void divide(int []nums,int left ,int right){
-        if(left>=right){
+    public void divide(int []nums,int l,int r){
+        if(l>=r){
             return;
         }
-        int m= left + (right-left)/2;
-        divide(nums,left,m);
-        divide(nums,m+1,right);
-        merge(nums,left,m,right);
+        int m= l + (r-l)/2;
+        divide(nums,l,m);
+        divide(nums,m+1,r);
+        merge(nums,l,m,r);
     }
-    public void merge(int[] nums, int left ,int m,int right){
-        int [] ans = new int[right-left+1];
-        int i=left;
+    public void merge(int[] nums, int l ,int m,int r){
+        int [] ans = new int[r-l+1];
+        int i=l;
         int j=m+1;
         int k=0;
-        while(i<=m && j<=right){
+        while(i<=m && j<=r){
             if(nums[i]<nums[j]){
                 ans[k]=nums[i];
                 i++;
@@ -34,13 +30,17 @@ class Solution {
             i++;
             k++;
         }
-        while(j<=right){
+        while(j<=r){
             ans[k]=nums[j];
             j++;
             k++;
         }
         for(int v=0;v<ans.length;v++){
-            nums[left+v] =ans[v];
+            nums[l+v] =ans[v];
         }
+    }
+    public int[] sortArray(int[] nums) {
+        divide(nums,0,nums.length-1);
+        return nums;
     }
 }
