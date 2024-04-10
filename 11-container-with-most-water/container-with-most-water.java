@@ -11,15 +11,11 @@ class Solution {
  //calculate for all the possible start,end and compare it with the previous calculated water           
             max_water = Math.max(area, max_water);
 
-            if(height[start]>height[end]){
+            if(height[start]>=height[end]){
                 end--;
             }
-            else if(height[start]<height[end]){
+            else if(height[start]<=height[end]){
                 start++;
-            }
-            else{
-                start++;
-                end--;
             }
         }
         return max_water;
