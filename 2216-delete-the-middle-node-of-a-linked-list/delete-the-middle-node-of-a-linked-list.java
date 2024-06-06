@@ -10,22 +10,20 @@
  */
 class Solution {
     public ListNode deleteMiddle(ListNode head) {
-    int size=0;
-    ListNode temp=head;
-    while(temp!=null){
-        temp=temp.next;
-        size++;
-    }
-
-    if(size==1){
+    
+    if(head==null || head.next==null){ //base condition
         return null;
     }
-
-    ListNode prev = head;
-    for(int i=1;i<(size/2);i++){ //int i= 1 bcoz [n/2]is given in Q where largest integer is to be taken
-        prev = prev.next;
+    ListNode fast=head; 
+//for case1,till the fast reaches null the slow has reach the deleting node and to delete the node we must iterate till previous of the deleting node and if fast=head.next is done then case1 gets fail as it will delete '1'
+    fast=head.next.next; 
+    ListNode slow = head;
+    
+    while(fast!=null && fast.next!=null){ //for even and odd nodes respectively
+        slow =slow.next;
+        fast = fast.next.next;
     }
-    prev.next = prev.next.next; 
+    slow.next = slow.next.next; // to delete the linkage of the node from its previous
     return head;
     }
 }
