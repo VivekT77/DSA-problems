@@ -9,16 +9,6 @@
  * }
  */
 class Solution {
-    public ListNode getmid(ListNode head){
-        ListNode slow = head;
-        ListNode fast = head.next; // for even,two mid nodes possible and we want left half's
-        while(fast!=null && fast.next!=null){
-            slow = slow.next;
-            fast=fast.next.next;
-        }
-        return slow;
-    }
-
     public ListNode merge(ListNode head1,ListNode head2){
         ListNode mergedll = new ListNode(-1); // new node to start the resultant LL 
         ListNode temp = mergedll;  //to iterate and compare  the nodes from left and right half
@@ -52,8 +42,14 @@ class Solution {
         if(head==null || head.next==null){
             return head;
         }
-        //find middle
-        ListNode mid = getmid(head);
+        
+        ListNode slow = head;
+        ListNode fast = head.next; // for even,two mid nodes possible and we want left half's
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast=fast.next.next;
+        }
+        ListNode mid =slow;
 
         //Merge sort for left and right
         ListNode righthead =mid.next; //to separate left half and right half
