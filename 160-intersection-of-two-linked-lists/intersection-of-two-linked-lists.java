@@ -14,19 +14,16 @@ public class Solution {
         if(headA==null || headB==null){
             return null;
         }
-        ListNode A = headA, B=headB;
-        while(A!=B){ //till both head don't get intersect
-            if(A!=null){  
-                A=A.next; //if its not the last node go further
-            }else{
-                A=headB;  //otherwise join to the head of "B";
+        while (headB != null) {
+             ListNode temp = headA;
+                while (temp != null) {
+                    if (temp == headB) {
+                        return headB;
+                    }
+                    temp = temp.next;
+                }
+                headB = headB.next;
             }
-            if(B!=null){ 
-                B=B.next;
-            }else{
-                B=headA;
-            }
-        }
-        return A;
+            return null;
     }
 }
