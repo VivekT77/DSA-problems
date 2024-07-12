@@ -23,32 +23,19 @@ class Solution{
         return prev;
     }
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        Queue<Integer> q1 = new LinkedList<>();  //to store the nodes individually in each queue
-        Queue<Integer> q2 = new LinkedList<>();
 
-        while(l1!=null){
-            q1.add(l1.val);
-            l1=l1.next;
-        }
-        while(l2!=null){
-            q2.add(l2.val);
-            l2=l2.next;
-        }
-        
         int carry=0;
         ListNode temp=null;
-        while(!q1.isEmpty() || !q2.isEmpty() || carry != 0){
-            int val1;
-            int val2;
-            if(!q1.isEmpty()){  //till queue get empty pop the node from each queue & add it with carry
-                val1 = q1.remove(); 
-            }else{
-                val1 = 0;
-            }
-            if(!q2.isEmpty()){
-                val2 = q2.remove();
-            }else{
-                val2 = 0;
+        while(l1 != null || l2 != null || carry != 0){
+            int val1=0;;
+            int val2=0;
+            if(l1!=null){  //till queue get empty pop the node from each queue & add it with carry
+                val1 = l1.val; 
+                l1 = l1.next;
+            }  
+            if(l2!=null){
+                val2 = l2.val;
+                l2 = l2.next;
             }
          int total = val1 + val2 + carry;   
          ListNode newnode = new ListNode(total%10); //make new node with the value got from the total
