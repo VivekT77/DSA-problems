@@ -10,41 +10,31 @@
  */
 class Solution {
     public int pairSum(ListNode head) {  //use hints
-        if(head==null){  //BC condition
-            return 0;
-        }
-        int Max=0;
-        ListNode mid = getmid(head);  //find mid
-        ListNode n_head = reverse(mid);  //reverse the second half and assign the pointers to the head 
-        ListNode start=head;        // of both half's LL and add it 
+                                        // solved using combining all the functions into one
+        int Max = 0;
+        //find mid to reverse
+        ListNode slow = head;
+        ListNode fast = head;
 
-        while(n_head.next!=null){      //till reaches the end of LL
-            Max=Math.max(Max,start.val+n_head .val);
-            start=start.next;
-            n_head =n_head .next;
-        }
-        return Max;
-    }
-
-    public ListNode getmid(ListNode head){
-        ListNode slow= head;
-        ListNode fast= head;
-        while(fast!=null && fast.next!=null && fast.next.next!=null){ //last condition for eg:3
-            slow = slow.next;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
             fast = fast.next.next;
         }
-        return slow; //it gives the mid of LL
-    }
 
-    private ListNode reverse(ListNode head){
-        ListNode prev = null;
-        ListNode curr = head;
-        while(curr!=null){
-            ListNode next=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=next;
+        //pass that slow which is mid as the head to reverse the second half
+        ListNode prev=null;
+        while(slow!=null){
+           ListNode next = slow.next;
+            slow.next=prev;
+            prev = slow;
+            slow=next;
         }
-        return prev;
+        //now the prev got from reversing 2nd half LL will be head and act as the 2nd part of the twins
+        while(prev !=null){
+            Max = Math.max(Max,head.val+prev.val);
+            head = head.next;
+            prev = prev.next;
+        }
+        return Max;
     }
 }
