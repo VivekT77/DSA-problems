@@ -15,29 +15,23 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        Queue<TreeNode> q= new LinkedList<>();
-        q.add(root.left);       //initially add  the root's left and right
-        q.add(root.right);
+    //2nd approach => optimized one,same as 1st but used recursion 
 
-        while(!q.isEmpty()){
-
-            TreeNode left = q.poll();   //remove the nodes from the queue and assign them as 
-            TreeNode right = q.poll();  //left and right,compare them and move to the subtrees
-
-            if(left==null && right==null){  
-                continue;
-            }
-            if(left==null || right==null){  
-                return false;
-            }
-            if(left.val!=right.val){
-                return false;
-            }
-            q.add(left.left);       //we need to compare the end nodes of the tree and then the
-            q.add(right.right);     //inner end nodes eg=> queue will be 2,2,3,3,4,4
-            q.add(left.right);
-            q.add(right.left);
+        if(root==null){
+            return true;
         }
-        return true;
+        return ismirror(root.left,root.right);
+    }
+
+    public boolean ismirror(TreeNode Lnode,TreeNode Rnode){
+
+        if(Lnode ==null && Rnode==null){
+            return true;
+        }
+        if(Lnode ==null || Rnode==null){
+            return false;
+        }
+        return (Lnode.val == Rnode.val && ismirror(Lnode.left,Rnode.right) && ismirror(Lnode.right,Rnode.left));
+        
     }
 }
