@@ -4,8 +4,8 @@ class Solution {
         for(int i=0;i<k;i++){
             pq.add(nums[i]);
         }
-
-        for(int i=k;i<nums.length;i++){
+        int n = nums.length;
+        for(int i=k;i<n;i++){
             if(nums[i] > pq.peek()){
                 pq.remove();
                 pq.add(nums[i]);
