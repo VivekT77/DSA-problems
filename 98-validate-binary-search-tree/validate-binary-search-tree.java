@@ -14,23 +14,26 @@
  * }
  */
 class Solution {
-    public void Inorder(ArrayList<Integer> ans,TreeNode root){
-        if(root==null){         //as inorder will give the sorted order of the binary tree
-            return;
-        }
-        Inorder(ans,root.left);
-        ans.add(root.val);
-        Inorder(ans,root.right);
+    public boolean isValidBST(TreeNode root){
+        //2nd appraoch
+        return helper(root,null,null);
     }
 
-    public boolean isValidBST(TreeNode root){
-        ArrayList<Integer> ans = new ArrayList<>();     //initialize the new arraylist and called the inorder
-        Inorder(ans,root);                      //and assign the values in it and compared for soreted BT
-        for(int i=0;i<ans.size()-1;i++){
-            if(ans.get(i)>=ans.get(i+1)){
-                return false;
-            }
+    public Boolean helper(TreeNode node,Integer low_value, Integer high_value){
+
+        if(node==null){
+            return true;
         }
-        return true;
+        if( low_value!=null && node.val<=low_value){
+            return false;
+        }
+        if( high_value!=null && node.val>=high_value){
+            return false;
+        }
+     // for left,node's low can be anything but high will not be > node's value. for right ,high can be anything but lowest value needs to be node's value otherwise it will be not be a BST
+        Boolean left = helper(node.left, low_value, node.val);
+        Boolean right = helper(node.right, node.val, high_value);   
+
+        return left && right;
     }
 }
