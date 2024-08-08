@@ -10,10 +10,7 @@
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
-        if(root==null){
-            return null;
-        }
-        if(root == p || root == q){     //example no.3
+        if(root==null || root == p || root == q){
             return root;
         }
 
