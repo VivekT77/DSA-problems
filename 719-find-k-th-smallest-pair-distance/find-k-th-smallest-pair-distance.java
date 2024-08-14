@@ -8,10 +8,11 @@ class Solution {
 
         while(left<right){
             int mid = left + (right-left)/2;
-            if(countpairs(nums,mid) < k){       //if the result is exceeding the mid then we have taken the
-                left = mid+1;         //wrong mid decrease the result and if not exceeding means increase
+            int min_distance = countpairs(nums,mid);
+            if(min_distance >= k){       //if the result is exceeding the mid then we have taken the
+                right = mid;         //wrong mid decrease the result and if not exceeding means increase
             }else{                  //the result
-                right = mid;
+                left = mid+1;
             }
         }
         return left;        //it will indicate the the smallest one
