@@ -1,30 +1,29 @@
 class Solution {
     public String[] reorderLogFiles(String[] logs) {
 
-        List<String> ans = new ArrayList<>();
-        List<String> digit_logs = new ArrayList<>();
-        List<String[]> letter_logs = new ArrayList<>();
+        int n = logs.length;
+         List<String> result = new ArrayList<>();
+         List<String> digit_logs = new ArrayList<>();
+         List<String[]> letter_logs = new ArrayList<>();
 
-        for(String s: logs){
+        for(String s :logs){
             int i = s.indexOf(" ");
-            if(Character.isDigit(s.charAt(i +1))){
+            if(Character.isDigit(s.charAt(i+1))){
                 digit_logs.add(s);
+            }else{
+                letter_logs.add(new String[]{s.substring(0,i),s.substring(i+1)});
             }
-            else{
-                letter_logs.add(new String[] {s.substring(0,i),s.substring(i+1)});
-            }
         }
 
-        Collections.sort(letter_logs , Comparator.comparing((String[] letterlog ) -> letterlog[1]).thenComparing((String[] letterlog) -> letterlog[0]));
+        Collections.sort(letter_logs, Comparator.comparing((String[] letter_log) -> letter_log[1]).thenComparing((String[] letter_log) -> letter_log[0]));
 
-        for(String[] letterlog: letter_logs){
-            ans.add(letterlog[0] + " " + letterlog[1]);
+        for(String[] letter_log : letter_logs){
+            result.add(letter_log[0] + " " + letter_log[1]);
         }
 
-        for(String digitlog: digit_logs){
-            ans.add(digitlog);
+        for(String digit : digit_logs){
+            result.add(digit);
         }
-
-        return ans.toArray(new String[0]);
+        return result.toArray(new String[n]);
     }
 }
