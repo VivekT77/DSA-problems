@@ -16,7 +16,8 @@ class Solution {
                 }
                 left++;
             }
-            max_fruits = Math.max(max_fruits,right-left+1);
+            int curr_length = right-left+1;
+            max_fruits = Math.max(max_fruits,curr_length);
         }
         return max_fruits;
     }
