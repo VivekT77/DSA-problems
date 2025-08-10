@@ -16,10 +16,10 @@ class Solution {
                 left++;
             }
             max_length = Math.max(max_length,right-left);
-            //edge case like all the elements are 1,1,1...
-            if(max_length == n){
-                return n-1;
-            }
+        }
+        //edge case like all the elements are 1,1,1...
+        if(max_length == n){
+            return n-1;
         }
         return max_length;
     }
