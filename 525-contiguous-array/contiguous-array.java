@@ -17,6 +17,9 @@ class Solution {
                 prefix_sum += 1;
             }
 
+            if(prefix_sum == 0){
+                max_length = i+1;
+            }
             if(m.containsKey(prefix_sum)){  //
                 max_length = Math.max(max_length, i - m.get(prefix_sum));
             }else{
