@@ -19,7 +19,7 @@ class Solution {
                 }
 
                 if(is_KBalanced){
-                    top = top - 2*k;
+                    top -= 2*k;
                 }
             }
         }
