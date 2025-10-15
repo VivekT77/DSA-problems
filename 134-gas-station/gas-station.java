@@ -13,11 +13,6 @@ class Solution {
                 start = i+1;
             }
         }
-        if(total_gas >= 0){
-            return start;
-        }
-        else{
-            return -1;
-        }
+        return total_gas >= 0 ?start:-1;
     }
 }
